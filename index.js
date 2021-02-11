@@ -40,7 +40,7 @@ const promptUser = () => {
             type: 'input',
             name: 'installation',
             message: 'Provide installation instructions.',
-            when: ({installConfirm}) => installConfirm
+            when: ({ installConfirm }) => installConfirm
         },
         {
             type: 'confirm',
@@ -52,7 +52,7 @@ const promptUser = () => {
             type: 'input',
             name: 'usage',
             message: 'Provide usage information.',
-            when: ({usageConfirm}) => usageConfirm
+            when: ({ usageConfirm }) => usageConfirm
         },
         {
             type: 'confirm',
@@ -64,7 +64,7 @@ const promptUser = () => {
             type: 'input',
             name: 'contribution',
             message: 'Provide contribution guidelines.',
-            when: ({contributionConfirm}) => contributionConfirm
+            when: ({ contributionConfirm }) => contributionConfirm
         },
         {
             type: 'confirm',
@@ -76,7 +76,7 @@ const promptUser = () => {
             type: 'input',
             name: 'test',
             message: 'Provide test instructions',
-            when: ({testConfirm}) => testConfirm
+            when: ({ testConfirm }) => testConfirm
         },
         {
             type: 'confirm',
@@ -89,7 +89,7 @@ const promptUser = () => {
             name: 'license',
             message: 'Which license is your application covered under?',
             choices: ['MIT', 'ISC', 'Apache 2.0', 'GNU GPLv3'],
-            when: ({licenseConfirm}) => licenseConfirm
+            when: ({ licenseConfirm }) => licenseConfirm
         },
         {
             type: 'input',
@@ -120,14 +120,20 @@ const promptUser = () => {
     ]);
 };
 
-promptUser().then(data =>  {
+promptUser().then(data => {
     const markDown = generateMarkdown(data);
 
-    fs.writeFile('README.md', markDown, err => {
-        if (err) throw err;
-    
-        console.log('README complete! Check out README.md to see the output!');
-    });
+    try {
+
+        fs.writeFile('README.md', markDown, err => {
+            if (err) throw err;
+
+            console.log('README complete! Check out README.md to see the output!');
+        });
+    }
+    catch (err) {
+        console.log(err);
+    }
 
 })
 
@@ -160,10 +166,10 @@ promptUser().then(data =>  {
 const questions = [];
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+function writeToFile(fileName, data) { }
 
 // TODO: Create a function to initialize app
-function init() {}
+function init() { }
 
 // Function call to initialize app
 init();
